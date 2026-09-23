@@ -2,6 +2,16 @@ resource "aws_instance" "SonarQube" {
   ami           = "ami-0b6d9d3d33ba97d99" # Ubuntu Server 26.04 LTS (x86)
   instance_type = "t3.medium" # Change to "t3.large" if SonarQube runs low on memory
   user_data = file("sonar.sh")
+  vpc_security_group_ids = [aws_security_group.allow_sonarqube.id]
+
+  instance_market_options {
+    market_type = "spot"
+
+    spot_options {
+      spot_instance_type             = "one-time" # "persistent"
+      instance_interruption_behavior = "terminate" # "stop"
+    }
+  }
 
   root_block_device {
     volume_size           = 20
