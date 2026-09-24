@@ -10,6 +10,9 @@
 # Primary Owner ID: 099720109477 (Canonical)
 # AWS Marketplace Publisher ID: 764694154057
 
+
+
+/* 
 data "aws_ami" "ubuntu_2604" {
   most_recent = true
 
@@ -30,4 +33,4 @@ data "aws_ami" "ubuntu_2604" {
     name   = "root-device-type"
     values = ["ebs"]
   }
-}
+} */
